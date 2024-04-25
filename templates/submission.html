@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Submission</title>
+    <style>
+        body {
+            background-color: #e69898; /* Maroon background */
+            font-family: Arial, sans-serif;
+            color: #fff; /* White text color */
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul ul {
+            margin-left: 20px;
+            margin-top: 5px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Test Scores Submitted:</h2>
+    <p align="center">GRE Score: {{ gre_score }}</p>
+    <p align="center">GMAT Score: {{ gmat_score }}</p>
+    <p align="center">TOEFL Score: {{ toefl_score }}</p>
+    <h2 align="center">Eligible Universities:</h2>
+    <ul>
+       
+    <!-- <h2>Other Eligible Universities:</h2> -->
+    <ul align="center">
+        {% for uni in other_eligible_universities %}
+        <li>{{ uni.name }} - {{ uni.location }}</li>
+        <ul>
+            <li>Fee Structure: {{ uni.fee }}</li>
+            <li>Opportunities:</li>
+            <ul>
+                {% for opp in uni.opportunities %}
+                <li>{{ opp }}</li>
+                {% endfor %}
+            </ul>
+        </ul>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+

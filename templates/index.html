@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abroad Student Eligibility</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #800000; /* Maroon background */
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff; /* White background */
+        }
+        h2 {
+            text-align: center;
+            color: #333; /* Dark gray text color */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            color: #333; /* Dark gray text color */
+        }
+        th, td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd; /* Light gray border bottom */
+        }
+        th {
+            background-color: #f2f2f2; /* Light gray background for table headers */
+            color: #333; /* Dark gray text color for table headers */
+        }
+        form {
+            background-color: #f9f9f9; /* Light gray background for form */
+            padding: 20px;
+            border-radius: 5px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333; /* Dark gray text color for labels */
+        }
+        input[type="number"] {
+            padding: 8px;
+            width: 100%;
+            border: 1px solid #ccc; /* Light gray border */
+            border-radius: 5px;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50; /* Green submit button */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Abroad Student Eligibility Criteria</h2>
+        <table>
+            <tr>
+                <th>University</th>
+                <th>Location</th>
+                <th>GRE Score Requirement</th>
+                <th>GMAT Score Requirement</th>
+                <th>TOEFL Score Requirement</th>
+                <th>Fee Structure</th>
+                <th>Opportunities</th>
+            </tr>
+            {% for uni in universities %}
+            <tr>
+                <td>{{ uni.name }}</td>
+                <td>{{ uni.location }}</td>
+                <td>{{ uni.gre_score }}</td>
+                <td>{{ uni.gmat_score }}</td>
+                <td>{{ uni.toefl_score }}</td>
+                <td>{{ uni.fee }}</td>
+                <td>
+                    <ul>
+                        {% for opp in uni.opportunities %}
+                        <li>{{ opp }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <h2 style="color: #333;">Enter Test Scores</h2>
+        <form action="/submit_scores" method="POST">
+            <label for="gre_score">GRE Score:</label>
+            <input type="number" id="gre_score" name="gre_score" min="0" max="340" required><br>
+            
+            <label for="gmat_score">GMAT Score:</label>
+            <input type="number" id="gmat_score" name="gmat_score" min="200" max="800" required><br>
+            
+            <label for="toefl_score">TOEFL Score:</label>
+            <input type="number" id="toefl_score" name="toefl_score" min="0" max="120" required><br>
+            
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+</html>
+
